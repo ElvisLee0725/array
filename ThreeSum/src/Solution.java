@@ -32,8 +32,7 @@ public class Solution {
             while(j < k) {
                 int sum = array[i] + array[j] + array[k];
                 if(sum == target) {
-                    List<Integer> ans = new ArrayList(Arrays.asList(array[i], array[j], array[k]));
-                    res.add(ans);
+                    res.add(new ArrayList(Arrays.asList(array[i], array[j], array[k])));
                     j = moveLeft(j, array);
                     k = moveRight(k, array);
                 }
