@@ -17,6 +17,9 @@ public class Solution {
         for(List<Integer> list : res) {
             System.out.println(list);
         }
+
+        char ch = 'A';
+        System.out.println((char)(ch + '0'));
     }
 
     public List<List<Integer>> allTriples(int[] array, int target) {
