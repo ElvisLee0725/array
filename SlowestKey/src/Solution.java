@@ -18,8 +18,8 @@
 
 public class Solution {
     public static void main(String[] args) {
-        int [] release = new int[]{9,29,49,50};
-        System.out.print(new Solution().slowestKey(release, "cbcd"));
+        int [] release = new int[]{12,23,36,46,62};
+        System.out.print(new Solution().slowestKey(release, "spuda"));
     }
     // Use an array of length 26 to represent the highest duration of letter from a to z
 // Loop the releaseTimes array and update the duration of each letter if the current letter has higher duration
