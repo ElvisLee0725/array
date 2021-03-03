@@ -1,7 +1,7 @@
 // Determine if there exists a set of four elements in a given array that sum to the given target number.
 // Assumptions: The given array is not null and has length of at least 4
 
-import java.util.HashMap;
+import java.util.*;
 
 public class Solution {
     public static void main(String[] args) {
@@ -31,5 +31,59 @@ public class Solution {
             }
         }
         return false;
+    }
+
+    public List<List<Integer>> fourSumReturnUniqueResults(int[] nums, int target) {
+        List<List<Integer>> res = new ArrayList();
+        // Edge Case: input array length less than 4, return empty List
+        if(nums.length < 4) {
+            return res;
+        }
+        Arrays.sort(nums);
+        HashSet<List<Integer>> hs = new HashSet();
+
+        for(int i = 0; i < nums.length-3; i++) {
+            for(int j = i+1; j < nums.length-2; j++) {
+                int left = j + 1;
+                int right = nums.length-1;
+                int curTarget = target - (nums[i] + nums[j]);
+                while(left < right) {
+                    if(nums[left] + nums[right] == curTarget) {
+                        List<Integer> list = new ArrayList();
+                        list.add(nums[i]);
+                        list.add(nums[j]);
+                        list.add(nums[left]);
+                        list.add(nums[right]);
+                        hs.add(list);
+                        left = moveLeft(nums, left);
+                        right = moveRight(nums, right);
+                    }
+                    else if(nums[left] + nums[right] > curTarget) {
+                        right = moveRight(nums, right);
+                    }
+                    else {
+                        left = moveLeft(nums, left);
+                    }
+                }
+            }
+        }
+        for(List<Integer> list : hs) {
+            res.add(list);
+        }
+        return res;
+    }
+
+    private int moveLeft(int [] arr, int left) {
+        while(left < arr.length-2 && arr[left] == arr[left+1]) {
+            left++;
+        }
+        return left + 1;
+    }
+
+    private int moveRight(int [] arr, int right) {
+        while(right > 2 && arr[right] == arr[right-1]) {
+            right--;
+        }
+        return right - 1;
     }
 }
